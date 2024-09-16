@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Tool.Logic
 {
-    [CreateAssetMenu(fileName = "New Weapon-type Part", menuName = "Procedural Weapons")]
+    [CreateAssetMenu(fileName = "New_Weapontype_Part", menuName = "Procedural Weapons/New Part Type")]
     public class ProcWeaponTypePart : ScriptableObject
     {
         public string weaponType = "sword";
