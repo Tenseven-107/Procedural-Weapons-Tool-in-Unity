@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: sword
   partType: handle
+  nextPart: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
+  lastPart: {fileID: 11400000, guid: 24c08c3485c38ad4eb0cff3c25a9cf7d, type: 2}
+  weaponConnectionPoints: 2

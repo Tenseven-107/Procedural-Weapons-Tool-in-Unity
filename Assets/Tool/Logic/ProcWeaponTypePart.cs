@@ -10,6 +10,7 @@ namespace Tool.Logic
         public string weaponType = "sword";
         public string partType = "handle";
         public ProcWeaponTypePart nextPart;
-        public int weaponConnectionPoints = 1;
+        public ProcWeaponTypePart lastPart;
+        [Range(0, 2)] public int weaponConnectionPoints = 1;
     }
 }
