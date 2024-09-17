@@ -7,6 +7,7 @@ using Tool.Logic.Singletons;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SubsystemsImplementation;
 
 
 namespace Tool.Editor
@@ -22,7 +23,7 @@ namespace Tool.Editor
         public int GenerationAmount => _generationAmount;
         
         // References
-        private List<ProcWeaponUniquePart> _usedParts;
+        private List<ProcWeaponUniquePart> _partList;
         private ProcWeaponGenerator _procWeaponGenerator;
         
 
@@ -31,6 +32,9 @@ namespace Tool.Editor
         public static void ShowWindow()
         {
             GetWindow(typeof(ProcWeaponMenu));
+            
+            // Start an instance of out part generator
+            //_procWeaponGenerator = 
         }
 
         // UI
@@ -42,7 +46,7 @@ namespace Tool.Editor
             _generationAmount = EditorGUILayout.IntField("Weapons to generate", _generationAmount);
             if (GUILayout.Button("Generate") == true)
             {
-                _procWeaponGenerator.Generate(_usedParts);
+                _procWeaponGenerator.Generate(_partList, _generationAmount);
             }
             
             EditorGUILayout.Space();
