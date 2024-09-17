@@ -1,18 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
-namespace Tool.Logic
+
+namespace Tool.Logic.Parts
 {
     [ExecuteAlways, CreateAssetMenu(fileName = "New_Unique_Part", menuName = "Procedural Weapons/New Unique Part")]
     public class ProcWeaponUniquePart : ScriptableObject
     {
-        [HideInInspector] public ProcWeaponTypePart partType;
-        [SerializeField] private ProcWeaponTypePart newPartType;
+        [HideInInspector, ReadOnly] public ProcWeaponTypePart partType;
+        [SerializeField] public ProcWeaponTypePart newPartType;
         
         [SerializeField, Tooltip("Select a .blend or .fbx file (Any object would work)")] public Object partModel;
 
