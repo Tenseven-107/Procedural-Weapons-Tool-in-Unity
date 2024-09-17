@@ -52,7 +52,7 @@ namespace Tool.Editor
             GUILayout.Label("Current weapon", EditorStyles.boldLabel);
 
             _isShowingCurrenWeapon = EditorGUILayout.Foldout(_isShowingCurrenWeapon, _currentWeaponStatus);
-            if (Selection.activeObject.GetComponent<ProceduralWeapon>())
+            if (Selection.activeObject.GetComponent<ProceduralWeapon>() != null)
             {
                 _currentWeaponStatus = "Selected " + Selection.activeObject;
                 
