@@ -10,11 +10,11 @@ using Object = UnityEngine.Object;
 
 namespace Tool.Logic.Parts
 {
-    [ExecuteAlways, CreateAssetMenu(fileName = "New_Unique_Part", menuName = "Procedural Weapons/New Unique Part")]
+    [ExecuteAlways, CreateAssetMenu(fileName = "New Unique Part", menuName = "Procedural Weapons/New Unique Part")]
     public class ProcWeaponUniquePart : ScriptableObject
     {
-        [HideInInspector, ReadOnly] public ProcWeaponTypePart partType;
-        [SerializeField] public ProcWeaponTypePart newPartType;
+        [HideInInspector, ReadOnly] public ProcWeaponTypePart usedPartType;
+        [SerializeField, WriteOnly] public ProcWeaponTypePart partType;
         
         [SerializeField, Tooltip("Select a .blend or .fbx file (Any object would work)")] public Object partModel;
 
@@ -25,12 +25,12 @@ namespace Tool.Logic.Parts
         private void OnValidate()
         {
             // Set list of connection points to how many points a part type has
-            if (partType != newPartType)
+            if (usedPartType != partType)
             {
-                partType = newPartType;
+                usedPartType = partType;
 
-                connectionPoints = new List<Vector3>(partType.weaponConnectionPoints);
-                for (int point = 0; point < partType.weaponConnectionPoints; point++)
+                connectionPoints = new List<Vector3>(usedPartType.weaponConnectionPoints);
+                for (int point = 0; point < usedPartType.weaponConnectionPoints; point++)
                 {
                     connectionPoints.Add(Vector3.zero);
                 }

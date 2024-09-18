@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword_Blade
   m_EditorClassIdentifier: 
   weaponType: sword
-  partType: handle
+  weaponPartType: blade
   nextPart: {fileID: 0}
   lastPart: {fileID: 11400000, guid: 4a141e8cd0676fd4886d58152d38d8de, type: 2}
   weaponConnectionPoints: 1

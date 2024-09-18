@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa6a40f3e6e43ed4db1edc422862dd17, type: 3}
-  m_Name: New_Unique_Part
+  m_Name: Blade-2
   m_EditorClassIdentifier: 
-  partType: {fileID: 11400000, guid: 4a141e8cd0676fd4886d58152d38d8de, type: 2}
-  newPartType: {fileID: 11400000, guid: 4a141e8cd0676fd4886d58152d38d8de, type: 2}
-  partModel: {fileID: 0}
+  usedPartType: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
+  partType: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
+  partModel: {fileID: 4164191622245682524, guid: c53ee2066b579574eb5c316b6e191b7b,
+    type: 3}
   connectionPoints:
-  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
