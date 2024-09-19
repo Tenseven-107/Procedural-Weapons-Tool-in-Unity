@@ -48,32 +48,33 @@ namespace Tool.Editor
             if (GUILayout.Button("Generate") == true)
             {
                 // Start an instance of out part generator
-                if (_procWeaponGenerator == null)
-                {
-                    _procWeaponGenerator = ScriptableObject.CreateInstance<ProcWeaponGenerator>();
-                }
+                if (_procWeaponGenerator == null) { _procWeaponGenerator = ScriptableObject.CreateInstance<ProcWeaponGenerator>(); }
                 
                 // Generate a weapon
-                _procWeaponGenerator.Generate(_partCollection.parts, _generationAmount);
+                if (_partCollection != null)
+                {
+                    _procWeaponGenerator.Generate(_partCollection.parts, _generationAmount);
+                }
+                else { Debug.LogError( this.GetType().FullName + ": No PartCollection given!"); }
             }
             
             EditorGUILayout.Space();
             
             
             // Edit selected weapon
-            GUILayout.Label("Current weapon", EditorStyles.boldLabel);
-
-            _isShowingCurrenWeapon = EditorGUILayout.Foldout(_isShowingCurrenWeapon, _currentWeaponStatus);
-            if (Selection.activeGameObject != null && Selection.activeGameObject.TryGetComponent<ProceduralWeapon>(out ProceduralWeapon selectedWeapon))
-            {
-                _currentWeaponStatus = "Selected " + Selection.activeObject;
-                
-                if (_isShowingCurrenWeapon == true)
-                {
-                    
-                }
-            }
-            else { _currentWeaponStatus = "Select a procedural weapon."; }
+            // GUILayout.Label("Current weapon", EditorStyles.boldLabel);
+            //
+            // _isShowingCurrenWeapon = EditorGUILayout.Foldout(_isShowingCurrenWeapon, _currentWeaponStatus);
+            // if (Selection.activeGameObject != null && Selection.activeGameObject.TryGetComponent<ProceduralWeapon>(out ProceduralWeapon selectedWeapon))
+            // {
+            //     _currentWeaponStatus = "Selected " + Selection.activeObject;
+            //     
+            //     if (_isShowingCurrenWeapon == true)
+            //     {
+            //         
+            //     }
+            // }
+            // else { _currentWeaponStatus = "Select a procedural weapon."; }
         }
         
         

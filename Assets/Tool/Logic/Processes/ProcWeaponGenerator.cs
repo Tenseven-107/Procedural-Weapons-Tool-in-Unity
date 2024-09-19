@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tool.Logic.Monobehaviours;
 using Tool.Logic.Parts;
 using UnityEngine;
 
@@ -14,12 +15,13 @@ namespace Tool.Logic.Processes
         {
             for (int number = 0; number < amount; number++)
             {
-                List<ProcWeaponUniquePart> usedParts = GetParts(partList);
+                var usedParts = GetParts(partList);
                 
                 Debug.Log("Total parts: " + partList.Count); // TEST
                 Debug.Log("Used parts: " + usedParts.Count); // TEST
                 for (int i =0; i < usedParts.Count; i++) {Debug.Log("Used part " + i + ": " + usedParts[i]);} // TEST
-                //SpawnWeapon(usedParts);
+                
+                SpawnNewWeapon(usedParts);
             }
         }
         
@@ -67,8 +69,7 @@ namespace Tool.Logic.Processes
             return selectedParts;
         }
         
-        
-        // Check if a part list already contains a the given part type
+        // Check if a part list already contains the given part type
         private bool CheckContainsPartType(List<ProcWeaponUniquePart> partList, string currentWeaponPartType)
         {
             for (int part = 0; part < partList.Count; part++)
@@ -85,9 +86,13 @@ namespace Tool.Logic.Processes
         
         
         // Spawn a weapon with said used parts
-        public void SpawnWeapon(List<ProcWeaponUniquePart> usedParts)
+        public void SpawnNewWeapon(List<ProcWeaponUniquePart> usedParts)
         {
-            //var newGameObject = 
+            var newGameObject = new GameObject();
+            newGameObject.name = "Procedural Weapon";
+            
+            var newProceduralWeapon = newGameObject.AddComponent<ProceduralWeapon>();
+            newProceduralWeapon.UsedParts = usedParts;
         }
     }
 }

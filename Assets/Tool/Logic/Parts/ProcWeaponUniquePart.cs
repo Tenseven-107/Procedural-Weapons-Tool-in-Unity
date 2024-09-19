@@ -16,7 +16,7 @@ namespace Tool.Logic.Parts
         [HideInInspector, ReadOnly] public ProcWeaponTypePart usedPartType;
         [SerializeField, WriteOnly] public ProcWeaponTypePart partType;
         
-        [SerializeField, Tooltip("Select a .blend or .fbx file (Any object would work)")] public Object partModel;
+        [SerializeField, Tooltip("Select a .blend or .fbx file (Any GameObject would work)")] public GameObject partModel;
 
         [SerializeField] public List<Vector3> connectionPoints = new List<Vector3>();
 
