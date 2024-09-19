@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usedPartType: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
   partType: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
-  partModel: {fileID: -4669035308730593150, guid: c53ee2066b579574eb5c316b6e191b7b,
+  partModel: {fileID: 919132149155446097, guid: c53ee2066b579574eb5c316b6e191b7b,
     type: 3}
   connectionPoints:
   - {x: 0, y: 0, z: 0}
