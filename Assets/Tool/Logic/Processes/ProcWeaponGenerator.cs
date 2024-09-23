@@ -19,8 +19,30 @@ namespace Tool.Logic.Processes
                 
                 Debug.Log("Total parts: " + partList.Count); // TEST
                 Debug.Log("Used parts: " + usedParts.Count); // TEST
-                for (int i =0; i < usedParts.Count; i++) {Debug.Log("Used part " + i + ": " + usedParts[i]);} // TEST
                 
+                // Checking if the used parts are okay to use
+                for (int part = 0; part < usedParts.Count; part++)
+                {
+                    Debug.Log("Used part " + part + ": " + usedParts[part]); // TEST
+                    // Stop generating if there are no parts
+                    if (usedParts.Count == 0)
+                    {
+                        Debug.LogError( this.GetType().FullName + ": No parts in used part collection!");
+                        return;
+                    }
+                        
+                    // If there's a base part, all is fine
+                    if (usedParts[part].usedPartType.basePart == true) { break; }
+                    
+                    // Log warning if there is no base part detected and at end of the list
+                    if (part == usedParts.Count - 1)
+                    {
+                        Debug.LogError(this.GetType().FullName + ": No base part detected in selected parts! Please add a base to your parttype " + usedParts[0].usedPartType.weaponType + " for your given part collection.");
+                        return;
+                    }
+                } 
+                
+                // Spawn a new weapon using picked parts
                 SpawnNewWeapon(usedParts);
             }
         }
@@ -32,6 +54,7 @@ namespace Tool.Logic.Processes
         {
             var selectedParts = new List<ProcWeaponUniquePart>();
 
+            // Generating a randdom selection of parts
             var randomWeaponType = partList[Random.Range(0, partList.Count)].usedPartType.weaponType;
             for (int part = 0; part < partList.Count; part++)
             {
@@ -47,6 +70,8 @@ namespace Tool.Logic.Processes
                 }
                 Debug.Log("Time: " + part); // TEST
             }
+     
+            // Return selected parts for use
             Debug.Log("FINAL Selected part-amount: " + selectedParts.Count); // TEST
             return selectedParts;
         }
