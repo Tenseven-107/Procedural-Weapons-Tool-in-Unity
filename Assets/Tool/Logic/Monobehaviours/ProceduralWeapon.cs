@@ -28,6 +28,7 @@ namespace Tool.Logic.Monobehaviours
         {
             List<ProcWeaponUniquePart> currentlyUsedParts = _usedParts;
             ProcWeaponUniquePart lastPart = _usedParts[0];
+            var lastTransform = transform;
             
             // Create a basepart
             for (int part = 0; part < _usedParts.Count; part++)
@@ -41,6 +42,9 @@ namespace Tool.Logic.Monobehaviours
                     
                     var partObject = Instantiate(currentPart.partModel, transform);
                     partObject.name = _usedParts[part].name;
+
+                    lastTransform = partObject.transform;
+                    
                     currentlyUsedParts.RemoveAt(part);
                     Debug.Log("Base part: " + currentPart); // TEST
                     break;
@@ -51,21 +55,21 @@ namespace Tool.Logic.Monobehaviours
             var currentConnectionPoint = 0;
             for (int times = 0; times < currentlyUsedParts.Count; times++)
             {
-                var nextPart = GetNextPart(currentlyUsedParts, lastPart.partType);
+                currentConnectionPoint = Mathf.Clamp(currentConnectionPoint, 0, lastPart.connectionPoints.Count);
+                
+                var nextPart = GetNextPart(currentlyUsedParts, lastPart.usedPartType);
                 var partObject = Instantiate(nextPart.partModel, transform);
-
-                partObject.transform.position =
-                    lastPart.connectionPoints[currentConnectionPoint] - nextPart.connectionPoints[0];
+                var offset = lastTransform.position + lastPart.connectionPoints[currentConnectionPoint] - nextPart.connectionPoints[0];
+                partObject.transform.position += offset;
                 partObject.name = nextPart.name;
 
-                if (nextPart.partType.lastPart == lastPart.partType)
-                {
-                    if (nextPart.connectionPoints.Count > 1) { currentConnectionPoint++; } 
-                }
-                else { currentConnectionPoint = 0; }
-                
+                Debug.Log("CurrentConnection point: " + currentConnectionPoint); // TEST
                 Debug.Log("Current part: " + nextPart); // TEST
+                
+                currentConnectionPoint++;
+                
                 lastPart = nextPart;
+                lastTransform = partObject.transform;
             }
         }
         

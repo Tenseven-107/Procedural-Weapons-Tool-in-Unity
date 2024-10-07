@@ -10,11 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa6a40f3e6e43ed4db1edc422862dd17, type: 3}
-  m_Name: handle-3
+  m_Name: handle-1
   m_EditorClassIdentifier: 
   usedPartType: {fileID: 11400000, guid: 24c08c3485c38ad4eb0cff3c25a9cf7d, type: 2}
   partType: {fileID: 11400000, guid: 24c08c3485c38ad4eb0cff3c25a9cf7d, type: 2}
-  partModel: {fileID: 919132149155446097, guid: c53ee2066b579574eb5c316b6e191b7b,
+  usedStatCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0, type: 2}
+  statCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0, type: 2}
+  stats:
+  - statName: damage
+    value: 0
+    singularStat: 0
+  - statName: weight
+    value: 0
+    singularStat: 0
+  - statName: dex_scaling
+    value: 0
+    singularStat: 0
+  - statName: strength_scaling
+    value: 0
+    singularStat: 0
+  partModel: {fileID: 8168477469847134938, guid: 91fddc507ce08384e836d5205b0779c3,
     type: 3}
   connectionPoints:
-  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 2.457, z: 0}

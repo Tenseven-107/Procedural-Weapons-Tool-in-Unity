@@ -10,11 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa6a40f3e6e43ed4db1edc422862dd17, type: 3}
-  m_Name: Blade-3
+  m_Name: Blade-2
   m_EditorClassIdentifier: 
   usedPartType: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
   partType: {fileID: 11400000, guid: 116ac2e26e23aa343966d4825cd2f9ac, type: 2}
-  partModel: {fileID: 919132149155446097, guid: c53ee2066b579574eb5c316b6e191b7b,
+  usedStatCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0, type: 2}
+  statCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0, type: 2}
+  stats:
+  - statName: damage
+    value: 0
+    singularStat: 0
+  - statName: weight
+    value: 0
+    singularStat: 0
+  - statName: dex_scaling
+    value: 0
+    singularStat: 0
+  - statName: strength_scaling
+    value: 0
+    singularStat: 0
+  partModel: {fileID: 8168477469847134938, guid: f98d90812626f9741a34d92a5bd53772,
     type: 3}
   connectionPoints:
-  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}

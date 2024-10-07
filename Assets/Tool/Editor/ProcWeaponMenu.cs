@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Tool.Logic.Monobehaviours;
-using Tool.Logic.PartCollections;
+using Tool.Logic.Collections;
 using Tool.Logic.Parts;
 using Tool.Logic.Processes;
 using Unity.VisualScripting;
@@ -16,10 +16,6 @@ namespace Tool.Editor
 {
     public class ProcWeaponMenu : EditorWindow
     {
-        // Menu handling variables
-        private bool _isShowingCurrenWeapon = true;
-        private string _currentWeaponStatus;
-        
         // Logic variables
         private int _generationAmount = 1;
         public int GenerationAmount => _generationAmount;
@@ -59,22 +55,6 @@ namespace Tool.Editor
             }
             
             EditorGUILayout.Space();
-            
-            
-            // Edit selected weapon
-            // GUILayout.Label("Current weapon", EditorStyles.boldLabel);
-            //
-            // _isShowingCurrenWeapon = EditorGUILayout.Foldout(_isShowingCurrenWeapon, _currentWeaponStatus);
-            // if (Selection.activeGameObject != null && Selection.activeGameObject.TryGetComponent<ProceduralWeapon>(out ProceduralWeapon selectedWeapon))
-            // {
-            //     _currentWeaponStatus = "Selected " + Selection.activeObject;
-            //     
-            //     if (_isShowingCurrenWeapon == true)
-            //     {
-            //         
-            //     }
-            // }
-            // else { _currentWeaponStatus = "Select a procedural weapon."; }
         }
         
         
