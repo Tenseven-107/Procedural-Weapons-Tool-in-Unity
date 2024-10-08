@@ -7,8 +7,12 @@ using UnityEngine;
 
 namespace Tool.Logic.Monobehaviours
 {
+    [RequireComponent(typeof(ProceduralWeaponStatistics))]
     public class ProceduralWeapon : MonoBehaviour
     {
+        // Stats
+        private ProceduralWeaponStatistics _statComponnent;
+        
         // Used Data
         private List<ProcWeaponUniquePart> _usedParts;
         public List<ProcWeaponUniquePart> UsedParts
@@ -26,6 +30,9 @@ namespace Tool.Logic.Monobehaviours
         // Generate a model
         private void Assemble()
         {
+            _statComponnent = GetComponent<ProceduralWeaponStatistics>();
+            _statComponnent.LoadStats(_usedParts);
+            
             List<ProcWeaponUniquePart> currentlyUsedParts = _usedParts;
             ProcWeaponUniquePart lastPart = _usedParts[0];
             var lastTransform = transform;
@@ -36,7 +43,7 @@ namespace Tool.Logic.Monobehaviours
                 var currentPart = _usedParts[part];
                 
                 // Create basePart
-                if (currentPart.usedPartType.basePart == true)
+                if (currentPart.partType.basePart == true)
                 {
                     lastPart = currentPart;
                     
@@ -57,7 +64,7 @@ namespace Tool.Logic.Monobehaviours
             {
                 currentConnectionPoint = Mathf.Clamp(currentConnectionPoint, 0, lastPart.connectionPoints.Count);
                 
-                var nextPart = GetNextPart(currentlyUsedParts, lastPart.usedPartType);
+                var nextPart = GetNextPart(currentlyUsedParts, lastPart.partType);
                 var partObject = Instantiate(nextPart.partModel, transform);
                 var offset = lastTransform.position + lastPart.connectionPoints[currentConnectionPoint] - nextPart.connectionPoints[0];
                 partObject.transform.position += offset;
@@ -82,7 +89,7 @@ namespace Tool.Logic.Monobehaviours
             for (int part = 0; part < partList.Count; part++)
             {
                 var nextPart = partList[part];
-                if (nextPart.usedPartType == currentPartType.nextPart)
+                if (nextPart.partType == currentPartType.nextPart)
                 {
                     return nextPart;
                 }

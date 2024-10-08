@@ -32,12 +32,12 @@ namespace Tool.Logic.Processes
                     }
                         
                     // If there's a base part, all is fine
-                    if (usedParts[part].usedPartType.basePart == true) { break; }
+                    if (usedParts[part].partType.basePart == true) { break; }
                     
                     // Log warning if there is no base part detected and at end of the list
                     if (part == usedParts.Count - 1)
                     {
-                        Debug.LogError(this.GetType().FullName + ": No base part detected in selected parts! Please add a base to your parttype " + usedParts[0].usedPartType.weaponType + " for your given part collection.");
+                        Debug.LogError(this.GetType().FullName + ": No base part detected in selected parts! Please add a base to your parttype " + usedParts[0].partType.weaponType + " for your given part collection.");
                         return;
                     }
                 } 
@@ -55,12 +55,12 @@ namespace Tool.Logic.Processes
             var selectedParts = new List<ProcWeaponUniquePart>();
 
             // Generating a randdom selection of parts
-            var randomWeaponType = partList[Random.Range(0, partList.Count)].usedPartType.weaponType;
+            var randomWeaponType = partList[Random.Range(0, partList.Count)].partType.weaponType;
             for (int part = 0; part < partList.Count; part++)
             {
-                if (partList[part].usedPartType.weaponType == randomWeaponType && CheckContainsPartType(selectedParts, partList[part].usedPartType.weaponPartType) == false)
+                if (partList[part].partType.weaponType == randomWeaponType && CheckContainsPartType(selectedParts, partList[part].partType.weaponPartType) == false)
                 {
-                    var currentPartType = partList[part].usedPartType.weaponPartType;
+                    var currentPartType = partList[part].partType.weaponPartType;
                     var partsOfThisType = GetPartsOfThisPartType(partList, randomWeaponType, currentPartType);
                     var randomPart = partsOfThisType[Random.Range(0, partsOfThisType.Count)];
                     Debug.Log("Selected type: " + currentPartType); // TEST
@@ -79,15 +79,15 @@ namespace Tool.Logic.Processes
 
         
         // Get parts in a list of a certain type of part
-        private List<ProcWeaponUniquePart> GetPartsOfThisPartType(List<ProcWeaponUniquePart> partList, string weaponType, string usedPartType)
+        private List<ProcWeaponUniquePart> GetPartsOfThisPartType(List<ProcWeaponUniquePart> partList, string weaponType, string partType)
         {
             List<ProcWeaponUniquePart> selectedParts = new List<ProcWeaponUniquePart>();
             
             for (int part = 0; part < partList.Count; part++)
             {
-                if (partList[part].usedPartType.weaponType == weaponType && partList[part].usedPartType.weaponPartType == usedPartType)
+                if (partList[part].partType.weaponType == weaponType && partList[part].partType.weaponPartType == partType)
                 {
-                    Debug.Log("Item of " + usedPartType + ": " + partList[part]); // TEST
+                    Debug.Log("Item of " + partType + ": " + partList[part]); // TEST
                     selectedParts.Add(partList[part]);
                 }
             }
@@ -99,7 +99,7 @@ namespace Tool.Logic.Processes
         {
             for (int part = 0; part < partList.Count; part++)
             {
-                if (partList[part].usedPartType.weaponPartType == currentWeaponPartType)
+                if (partList[part].partType.weaponPartType == currentWeaponPartType)
                 {
                     return true;
                 }

@@ -10,18 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70b4ac7dbebda70429c911e51a800f0f, type: 3}
-  m_Name: Stats
+  m_Name: Stats_handling
   m_EditorClassIdentifier: 
   stats:
-  - statName: damage
-    statValue: 0
-    singularStat: 0
   - statName: weight
     statValue: 0
-    singularStat: 0
-  - statName: dex_scaling
-    statValue: 0
-    singularStat: 0
-  - statName: strength_scaling
-    statValue: 0
-    singularStat: 0
+    negativeStat: 0
+  - statName: handling
+    statValue: 5
+    negativeStat: 0

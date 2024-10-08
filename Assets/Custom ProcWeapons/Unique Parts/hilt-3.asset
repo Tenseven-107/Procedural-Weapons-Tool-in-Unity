@@ -12,23 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6a40f3e6e43ed4db1edc422862dd17, type: 3}
   m_Name: hilt-3
   m_EditorClassIdentifier: 
-  usedPartType: {fileID: 11400000, guid: 4a141e8cd0676fd4886d58152d38d8de, type: 2}
   partType: {fileID: 11400000, guid: 4a141e8cd0676fd4886d58152d38d8de, type: 2}
-  usedStatCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0, type: 2}
+  editorPartType: {fileID: 11400000, guid: 4a141e8cd0676fd4886d58152d38d8de, type: 2}
   statCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0, type: 2}
+  editorStatCollection: {fileID: 11400000, guid: 4df992eb59f57424cbcb9e3277436da0,
+    type: 2}
   stats:
   - statName: damage
-    value: 0
-    singularStat: 0
+    statValue: 1
+    negativeStat: 0
   - statName: weight
-    value: 0
-    singularStat: 0
+    statValue: 1
+    negativeStat: 0
   - statName: dex_scaling
-    value: 0
-    singularStat: 0
+    statValue: 1
+    negativeStat: 0
   - statName: strength_scaling
-    value: 0
-    singularStat: 0
+    statValue: 1
+    negativeStat: 0
   partModel: {fileID: 8168477469847134938, guid: 0d9d1c0a8fe0d3244badf08ba38b5fdd,
     type: 3}
   connectionPoints:

@@ -13,8 +13,8 @@ namespace Tool.Editor
     public class UniquePartGui : Editor
     {
         private bool _isOpen = true;
-        [ReadOnly] private string _connectionPointsProperty = "connectionPoints";
-        [ReadOnly] private string _connectionPointsTooltip = "Input coördinates of the model other parts will connect to";
+        private const string Connectionproperty = "connectionPoints";
+        private const string Connectiontooltip = "Input coördinates of the model other parts will connect to";
         
         // Updating inspector
         public override void OnInspectorGUI()
@@ -27,18 +27,18 @@ namespace Tool.Editor
         {
             ProcWeaponUniquePart currentPart = (ProcWeaponUniquePart)target;
 
-            SerializedObject serializedObject = new SerializedObject(currentPart);
-            serializedObject.Update();
+            SerializedObject thisSerializedObject = new SerializedObject(currentPart);
+            thisSerializedObject.Update();
 
-            var ignoredParams = new [] {"m_Script", _connectionPointsProperty};
-            DrawPropertiesExcluding(serializedObject, ignoredParams);
+            var ignoredParams = new [] {"m_Script", Connectionproperty};
+            DrawPropertiesExcluding(thisSerializedObject, ignoredParams);
             
             // Drawing the connection point list
-            _isOpen = EditorGUILayout.Foldout(_isOpen, new GUIContent("Connection Points", _connectionPointsTooltip));
+            _isOpen = EditorGUILayout.Foldout(_isOpen, new GUIContent("Connection Points", Connectiontooltip));
 
             if (_isOpen == true)
             {
-                SerializedProperty propertyList = serializedObject.FindProperty(_connectionPointsProperty);
+                SerializedProperty propertyList = thisSerializedObject.FindProperty(Connectionproperty);
             
                 for (int element = 0; element < propertyList.arraySize; element++)
                 {
@@ -50,7 +50,7 @@ namespace Tool.Editor
             
             // Applying changes
             this.Repaint();
-            serializedObject.ApplyModifiedProperties();
+            thisSerializedObject.ApplyModifiedProperties();
         }
     }
 }
