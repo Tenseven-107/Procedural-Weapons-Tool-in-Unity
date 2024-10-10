@@ -17,27 +17,35 @@ namespace Tool.Logic.Monobehaviours
         public void LoadStats(List<ProcWeaponUniquePart> parts)
         {
             // Adding stats
+            var leftOverStatLists = new List<List<ProcWeaponStat>>();
             foreach (var part in parts)
             {
+                var newList = new List<ProcWeaponStat>();
                 for (int stat = 0; stat < part.stats.Count; stat++)
                 {
                     var currentStatList = part.stats;
                     if (HasStat(currentStatList[stat].statName) == false) { weaponStats.Add(currentStatList[stat]); }
+                    else { newList.Add(currentStatList[stat]); }
                 }
+                
+                leftOverStatLists.Add(newList);
             }
-            
+
+
             // Calculating stats
             for (int stat = 0; stat < weaponStats.Count; stat++)
             {
                 var startStatValue = !weaponStats[stat].negativeStat ? weaponStats[stat].statValue : -weaponStats[stat].statValue;
                 var statCopy = new ProcWeaponStat(weaponStats[stat].statName, startStatValue, weaponStats[stat].negativeStat);
-
-                foreach (var part in parts)
+                
+                for (int list = 0; list < leftOverStatLists.Count; list++)
                 {
-                    for (int partStat = 0; partStat < part.stats.Count; partStat++)
+                    for (int subStat = 0; subStat < leftOverStatLists[list].Count; subStat++)
                     {
-                        var currentStat = part.stats[partStat];
-                        statCopy.statValue = !currentStat.negativeStat ? statCopy.statValue + currentStat.statValue : statCopy.statValue - currentStat.statValue;
+                        if (leftOverStatLists[list][subStat].statName == statCopy.statName)
+                        {
+                            statCopy.statValue = !currentStat.negativeStat ? statCopy.statValue + currentStat.statValue : statCopy.statValue - currentStat.statValue;
+                        }
                     }
                 }
 
