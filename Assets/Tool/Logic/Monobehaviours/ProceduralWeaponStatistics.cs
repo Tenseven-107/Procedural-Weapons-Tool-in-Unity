@@ -44,6 +44,7 @@ namespace Tool.Logic.Monobehaviours
                     {
                         if (leftOverStatLists[list][subStat].statName == statCopy.statName)
                         {
+                            var currentStat = leftOverStatLists[list][subStat];
                             statCopy.statValue = !currentStat.negativeStat ? statCopy.statValue + currentStat.statValue : statCopy.statValue - currentStat.statValue;
                         }
                     }
