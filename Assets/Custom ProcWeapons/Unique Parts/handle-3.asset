@@ -19,10 +19,10 @@ MonoBehaviour:
     type: 2}
   stats:
   - statName: damage
-    statValue: 1
+    statValue: 0
     negativeStat: 0
   - statName: weight
-    statValue: 1
+    statValue: 3
     negativeStat: 0
   - statName: dex_scaling
     statValue: 1

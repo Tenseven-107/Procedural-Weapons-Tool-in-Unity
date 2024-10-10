@@ -50,6 +50,7 @@ namespace Tool.Logic.Monobehaviours
                     }
                 }
 
+                statCopy.negativeStat = false;
                 weaponStats[stat] = statCopy;
             }
         }
