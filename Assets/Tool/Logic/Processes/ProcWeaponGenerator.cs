@@ -17,17 +17,12 @@ namespace Tool.Logic.Processes
             {
                 var usedParts = GetParts(partList);
                 
-                Debug.Log("Total parts: " + partList.Count); // TEST
-                Debug.Log("Used parts: " + usedParts.Count); // TEST
-                
                 // Checking if the used parts are okay to use
                 for (int part = 0; part < usedParts.Count; part++)
                 {
-                    Debug.Log("Used part " + part + ": " + usedParts[part]); // TEST
                     // Stop generating if there are no parts
                     if (usedParts.Count == 0)
                     {
-                        Debug.LogError( this.GetType().FullName + ": No parts in used part collection!");
                         return;
                     }
                         
@@ -63,16 +58,11 @@ namespace Tool.Logic.Processes
                     var currentPartType = partList[part].partType.weaponPartType;
                     var partsOfThisType = GetPartsOfThisPartType(partList, randomWeaponType, currentPartType);
                     var randomPart = partsOfThisType[Random.Range(0, partsOfThisType.Count)];
-                    Debug.Log("Selected type: " + currentPartType); // TEST
                     selectedParts.Add(randomPart);
-                    Debug.Log(selectedParts); // TEST
-                    Debug.Log("Current Selected part-amount: " + selectedParts.Count); // TEST
                 }
-                Debug.Log("Time: " + part); // TEST
             }
      
             // Return selected parts for use
-            Debug.Log("FINAL Selected part-amount: " + selectedParts.Count); // TEST
             return selectedParts;
         }
 
@@ -87,7 +77,6 @@ namespace Tool.Logic.Processes
             {
                 if (partList[part].partType.weaponType == weaponType && partList[part].partType.weaponPartType == partType)
                 {
-                    Debug.Log("Item of " + partType + ": " + partList[part]); // TEST
                     selectedParts.Add(partList[part]);
                 }
             }

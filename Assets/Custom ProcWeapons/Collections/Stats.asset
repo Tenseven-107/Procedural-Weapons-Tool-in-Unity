@@ -15,13 +15,16 @@ MonoBehaviour:
   stats:
   - statName: damage
     statValue: 0
-    singularStat: 0
+    negativeStat: 0
   - statName: weight
     statValue: 0
-    singularStat: 0
+    negativeStat: 0
   - statName: dex_scaling
     statValue: 0
-    singularStat: 0
+    negativeStat: 0
   - statName: strength_scaling
     statValue: 0
-    singularStat: 0
+    negativeStat: 0
+  - statName: sex_appeal
+    statValue: 100
+    negativeStat: 0

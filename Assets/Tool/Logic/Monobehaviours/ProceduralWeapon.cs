@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Tool.Logic.Monobehaviours
 {
     [RequireComponent(typeof(ProceduralWeaponStatistics))]
+    [RequireComponent(typeof(ProceduralWeaponExportImport))]
     public class ProceduralWeapon : MonoBehaviour
     {
         // Stats
@@ -21,26 +22,39 @@ namespace Tool.Logic.Monobehaviours
             set
             {
                 _usedParts = value;
-                Assemble();
+                Assemble(_usedParts, true);
             }
         }
         
         
         
         // Generate a model
-        private void Assemble()
+        public void Assemble(List<ProcWeaponUniquePart> givenParts, bool loadStats)
         {
-            _statComponnent = GetComponent<ProceduralWeaponStatistics>();
-            _statComponnent.LoadStats(_usedParts);
+            // Remove children if there are any
+            if (transform.childCount > 0)
+            {
+                for (int child = 0; child < transform.childCount; child++)
+                {
+                    Destroy(transform.GetChild(child).gameObject);
+                }
+            }
             
-            List<ProcWeaponUniquePart> currentlyUsedParts = _usedParts;
-            ProcWeaponUniquePart lastPart = _usedParts[0];
+            // Load stats
+            if (loadStats == true)
+            {
+                _statComponnent = GetComponent<ProceduralWeaponStatistics>();
+                _statComponnent.LoadStats(givenParts);
+            }
+
+            List<ProcWeaponUniquePart> currentlyUsedParts = givenParts;
+            ProcWeaponUniquePart lastPart = givenParts[0];
             var lastTransform = transform;
             
             // Create a basepart
-            for (int part = 0; part < _usedParts.Count; part++)
+            for (int part = 0; part < givenParts.Count; part++)
             {
-                var currentPart = _usedParts[part];
+                var currentPart = givenParts[part];
                 
                 // Create basePart
                 if (currentPart.partType.basePart == true)
@@ -48,12 +62,12 @@ namespace Tool.Logic.Monobehaviours
                     lastPart = currentPart;
                     
                     var partObject = Instantiate(currentPart.partModel, transform);
-                    partObject.name = _usedParts[part].name;
+                    partObject.name = givenParts[part].name;
 
                     lastTransform = partObject.transform;
                     
                     currentlyUsedParts.RemoveAt(part);
-                    Debug.Log("Base part: " + currentPart); // TEST
+
                     break;
                 }
             }
@@ -69,9 +83,6 @@ namespace Tool.Logic.Monobehaviours
                 var offset = lastTransform.position + lastPart.connectionPoints[currentConnectionPoint] - nextPart.connectionPoints[0];
                 partObject.transform.position += offset;
                 partObject.name = nextPart.name;
-
-                Debug.Log("CurrentConnection point: " + currentConnectionPoint); // TEST
-                Debug.Log("Current part: " + nextPart); // TEST
                 
                 currentConnectionPoint++;
                 

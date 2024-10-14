@@ -12,6 +12,12 @@ namespace Tool.Logic.Monobehaviours
         [SerializeField] private List<ProcWeaponStat> weaponStats = new List<ProcWeaponStat>();
         public List<ProcWeaponStat> WeaponStats => weaponStats;
         
+        // Flavor text
+        [SerializeField] private string weaponName;
+        [SerializeField, TextArea] private string description;
+        public string WeaponName => weaponName;
+        public string Description => description;
+        
         
         // Loading stats from parts
         public void LoadStats(List<ProcWeaponUniquePart> parts)
@@ -55,6 +61,18 @@ namespace Tool.Logic.Monobehaviours
             }
         }
 
+        
+        // Load raw stats
+        public void LoadRawStats(List<ProcWeaponStat> newStats)
+        {
+            weaponStats.Clear();
+            for (int stat = 0; stat < newStats.Count; stat++)
+            {
+                var newStat = newStats[stat];
+                weaponStats.Add(newStat);
+            }
+        }
+        
 
         
         // Check if already has a certain stat

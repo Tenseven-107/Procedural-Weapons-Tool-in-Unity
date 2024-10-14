@@ -14,7 +14,6 @@ namespace Tool.Logic
         [Header("Connecting")] 
         public bool basePart = false;
         public ProcWeaponTypePart nextPart;
-        public ProcWeaponTypePart lastPart;
         [Range(0, 2)] public int weaponConnectionPoints = 1;
     }
 }
